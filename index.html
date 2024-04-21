@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vision AI-based human-robot collaborative assembly driven by autonomous robots</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Vision AI-based human-robot collaborative assembly driven by autonomous robots</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Sichao Liu<sup>1</sup>,</span>
+            <span class="author-block">
+              Jianjing Zhang</a><sup>2</sup>,</span>
+            <span class="author-block">
+              Lihui Wang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              Robert X. Gao</a><sup>2</sup>,</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>KTH Royal Institute of Technology,</span>
+            <span class="author-block"><sup>2</sup>Case Western Reserve University</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Autonomous robots that understand human instructions can significantly enhance the efficiency
+            in human-robot assembly operations where robotic support is needed to handle unknown objects
+            and/or provide on-demand assistance. This paper introduces a vision AI-based method for human-robot
+            collaborative (HRC) assembly, enabled by a large language model (LLM). Upon 3D object reconstruction
+            and pose establishment through neural object field modelling, a visual servoing-based mobile
+            robotic system performs object manipulation and navigation guidance to a mobile robot.  
+            The LLM model provides text-based logic reasoning and high-level control command generation 
+            for natural human-robot interactions. The effectiveness of the presented method is experimentally demonstrated.
+          </p>
+          
+        </div>
+      </div>
+    </div>
+ 
+    <!--/ Abstract. -->
+
+    <!-- workfolw. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-5">Workflow</h2>
+          <img src="./static/images/Fig.1.png"/>
+        <div class="content has-text-justified">
+         <p>
+         The workflow starts with RGB-D video collection of an object (e.g., a valve cover)
+         along scanning paths, with the output being object frames and masks (a video frame includes a colour 
+         and a depth image). The frames and masks serve as the input for training a network to build the 3D model 
+         of the object with optimised pose. The object is subsequently detected by a camera-driven visual servoing 
+         system installed on the AMR. Separately, a laser scanner (Lidar) creates a simultaneous localisation and mapping 
+         (SLAM) map of the assembly environment along the moving path of the robot, enabling it to navigate safely around
+         the assembly environment. Since the robot does not know initially what objects to be acted upon, object mapping
+         with labelling is taken as landmarks. To control the robot for task execution, new capabilities of the LLM are 
+         explored to reason and extract control logic steps behind text instructions issued by a human operator. Finally,
+          high-level control commands with vocabulary-based object indexing and mapping are used for the robot motion control
+           and assembly task execution.
+        </p>
+      </div>
+      </div>
+
+    </div>
+   
+    <!--/ Paper video. -->
+  </div>
+</section>
+ 
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Neural representation of unknown objects</h2>
+          <p>
+            The goal is to build its optimal pose estimate for robotic manipulation when
+            the CAD model and instance-level prior information of the object as well as camera poses are not available. 
+          </p>
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+              <img src="./static/images/Fig.2.png"
+                  />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-4">Results</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              3D reconstruction and pose estimate for an object (valve cover):  (Left-1) object image as ground truth;
+               (left-2) & (left-3): mesh models rendered by point cloud (front & back); (right) object’s 6D pose with a grasping point (white dot).
+            </p>
+            <img src="./static/images/Fig.3.png"
+                  />
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+
+        <div class="columns is-centered">
+          <!-- Visual Effects. -->
+          <div class="column">
+            <div class="content">
+              <h2 class="title is-4">SLAM and Object indexing </h2>
+              <div class="content has-text-justified">
+              <p>
+                By using Lidar data of scanning work environments, a Lidar-based SLAM system is developed to enable the robot 
+                in building a spatial map and localise itself on the map. Combining the robot’s position and pose with the 
+                location data of the object, the robot will know the obstacle’s spatial location and its geometrical profile
+              </p>
+              <div class="columns is-centered">
+                <div class="column is-full-width">
+                  <img src="./static/images/Fig.4.png"
+                      />
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <!--/ Visual Effects. -->
+    
+          <!-- Matting. -->
+          <div class="column">
+            <h2 class="title is-4">Visual servoing</h2>
+            <div class="columns is-centered">
+              <div class="column content">
+                <div class="content has-text-justified">
+                <p>
+                  A visual servoing-based closed-loop control scheme is developed. Two cameras are installed on the robot,
+                   with the top one for observing assembly operation whereas the bottom one for workspace scanning at
+                    the ground level to assist the robot in navigation
+                </p>
+                <img src="./static/images/Fig.5.png"
+                      />
+                 </div>
+               </div>
+    
+            </div>
+          </div>
+        </div>
+        <!--/ Matting. -->
+</section>
+
+<section class="section">
+   <div class="container is-max-desktop">
+    <!-- Interpolating. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-4">LLM-driven logic reasoning of texts and high-level control code</h2>
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <img src="./static/images/Fig.6.png"
+                />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Interpolating. -->
+    <!-- Re-rendering. -->
+        
+        <div class="content has-text-justified">
+          <p>
+            Firstly, the control logic is reasoned, given the text into the fine-tuned model, and the text objects
+             (e.g., ignition coil) are extracted by language reasoning that associates object names with text 
+             descriptions and categories. Next, the control logic is formulated as 1) ‘move to shelf of spare parts’,
+              2) ‘pick up ignition coil’, 3) ‘move to table’, 4) ‘place ignition coil on table’.
+          </p>
+
+          <p>
+            GPT-4 performs object indexing of the control logic extracted from the text and defines ‘shelf’ as the
+             object of the control codes (robot.move_to_object(“shelf”)). These high-level control codes include 
+             physical information of the indexed object (e.g., position and height) and are then mapped to low-level
+              robot control commands for robot movement and gripper control
+          </p>
+        </div>
+      </div>
+      <!--/ Matting. -->
+</section>
+        <!-- <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 muted
+                 preload
+                 playsinline
+                 width="75%">
+            <source src="./static/videos/replay.mp4"
+                    type="video/mp4">
+          </video>
+        </div> -->
+        <!--/ Re-rendering. -->
+   
+    <!--/ Animation. -->
+<section class="section">
+      <div class="container is-max-desktop">
+    <!-- Concurrent Work. -->
+    <div class="columns is-centered">
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Experimental setup </h2>
+          <div class="content has-text-justified">
+          <p>
+            An operator instructs a mobile robot (Robotnik Summit-XL Gen with a Kinova arm) to handover spare 
+            parts for replacing a broken ignition coil and a missed valve cover when assembling a fuel injector 
+            tube and ignition coil A in parallel, followed by securing the components. The system is controlled
+             by an open architecture ROS-integrated computer connected to OpenAI GPT-4. The RGB-D steams for visual
+              servoing are taken by a top-down camera system.
+          </p>
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+              <img src="./static/images/Fig.7.png"
+                  />
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-4">Results</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <div class="content has-text-justified">
+            <p>
+            The operator’s voice instruction to the robot, “pick up ignition coil on the shelf of spare parts”,
+             triggers the pre-trained LLM, and then it performs logic reasoning of the text and generates control steps, 
+             followed by outputting uniformed control codes with the indexed object. The indexed vocabulary of ‘shelf’ is
+              mapped to the built SLAM map, to load its location to the robot for docking to the object (‘shelf’). The
+               visual servoing system of the robot simultaneously recognises the ignition coil and builds its pose by 
+               calling the part recognition and pose estimate algorithms. 
+           
+            </p>
+            <img src="./static/images/Fig.8.png"/>
+          </div>
+          </div>
+
+        </div>
+      </div>
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{liu2024vision,
+  author    = {Liu, Sichao and Zhang, Jianjing and Wang, Lihui and Gao, Robert X},
+  title     = {Vision AI-based human-robot collaborative assembly driven by autonomous robots},
+  journal={CIRP annals},
+  volume={73},
+  number={1},
+  pages={1--4},
+  year={2024},
+  publisher={Elsevier}
+}</code></pre>
+  </div>
+</section>
+
+
+<!-- <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer> -->
+
+</body>
+</html>
